@@ -24,7 +24,7 @@
                     </StackPanel>
                     <TextBox Style="{StaticResource TextBoxSubTitle}" Margin="20,0,0,0">Step 2: Set the Framework.Entity (EF) connection strings to your SQL Server by:</TextBox>
                     <StackPanel Orientation="Vertical" Margin="38,0,0,0">
-                        <TextBox Style="{StaticResource TextBoxBody}">I. Open Framework.DesktopApp\Local\ConnectionStrings.config</TextBox>
+                        <TextBox Style="{StaticResource TextBoxBody}">I. Open Framework.DesktopApp\App_Data\ConnectionStrings.config</TextBox>
                         <TextBox Style="{StaticResource TextBoxBody}">II. Change DatabaseServer.dev.getframework.local to your SQL Server machine name</TextBox>
                         <TextBox Style="{StaticResource TextBoxBody}">III. For SQL Authentication, change "Integrated Security=true" to "user id=USER; password=PASS;"</TextBox>
                     </StackPanel>

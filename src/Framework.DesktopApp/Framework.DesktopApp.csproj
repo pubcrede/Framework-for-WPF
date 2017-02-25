@@ -248,14 +248,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Local\AppSettings.config">
+    <None Include="App_Data\AppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Local\ConnectionStrings.config">
+    <None Include="App_Data\ConnectionStrings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
