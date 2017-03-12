@@ -13,7 +13,7 @@
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="9*" />
                         </Grid.RowDefinitions>
-                        <uc:HeaderBar Text="Genesys Framework for WPF" Grid.Row="0" />
+                        <uc:HeaderBar Text="Genesys Source for WPF" Grid.Row="0" />
                         <StackPanel Orientation="Horizontal" Grid.Row="1">
                             <uc:HamburgerMenu WidthOpen="100" WidthClosed="100" />
                             <StackPanel Margin="0,10,0,0">
