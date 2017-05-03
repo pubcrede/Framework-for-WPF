@@ -1,5 +1,6 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="ProgressProcessingRing.cs" company="Genesys Source">
+//      Copyright (c) 2017 Genesys Source. All rights reserved.
 //      Licensed to the Apache Software Foundation (ASF) under one or more 
 //      contributor license agreements.  See the NOTICE file distributed with 
 //      this work for additional information regarding copyright ownership.
@@ -22,7 +23,7 @@ using System.Windows.Controls;
 using Genesys.Extensions;
 using Genesys.Foundation.Worker;
 
-namespace Foundation.UserControls
+namespace Genesys.Foundation.UserControls
 {
     /// <summary>
     /// ProgressProcessingControl
@@ -95,7 +96,6 @@ namespace Foundation.UserControls
         /// <summary>
         /// Binds controls to the data 
         /// </summary>
-        /// <typeparam name="TModel">Model of this page</typeparam>
         /// <param name="modelData">Data to bind to page</param>
         protected override void BindModelData(object modelData)
         {

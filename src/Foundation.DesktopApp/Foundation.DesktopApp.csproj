@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,27 +41,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Genesys.Extensions.Full, Version=3.17.4.0, Culture=neutral, PublicKeyToken=e9c26097b5145304, processorArchitecture=MSIL">
-      <HintPath>..\packages\Genesys.Extensions.Full.3.17.4.2\lib\net46\Genesys.Extensions.Full.dll</HintPath>
+      <HintPath>..\packages\Genesys.Extensions.Full.3.17.4.706\lib\net46\Genesys.Extensions.Full.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Genesys.Extensions.Universal, Version=3.17.4.0, Culture=neutral, PublicKeyToken=e9c26097b5145304, processorArchitecture=MSIL">
-      <HintPath>..\packages\Genesys.Extensions.Universal.3.17.4.2\lib\portable-net451+win81+wpa81\Genesys.Extensions.Universal.dll</HintPath>
+      <HintPath>..\packages\Genesys.Extensions.Universal.3.17.4.706\lib\net46\Genesys.Extensions.Universal.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Genesys.Extras.Full, Version=3.17.4.0, Culture=neutral, PublicKeyToken=e9c26097b5145304, processorArchitecture=MSIL">
-      <HintPath>..\packages\Genesys.Extensions.Full.3.17.4.2\lib\net46\Genesys.Extras.Full.dll</HintPath>
+      <HintPath>..\packages\Genesys.Extensions.Full.3.17.4.706\lib\net46\Genesys.Extras.Full.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Genesys.Extras.Universal, Version=3.17.4.0, Culture=neutral, PublicKeyToken=e9c26097b5145304, processorArchitecture=MSIL">
-      <HintPath>..\packages\Genesys.Extensions.Universal.3.17.4.2\lib\portable-net451+win81+wpa81\Genesys.Extras.Universal.dll</HintPath>
+      <HintPath>..\packages\Genesys.Extensions.Universal.3.17.4.706\lib\net46\Genesys.Extras.Universal.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Genesys.Foundation.Interfaces, Version=3.17.4.0, Culture=neutral, PublicKeyToken=e9c26097b5145304, processorArchitecture=MSIL">
-      <HintPath>..\packages\Genesys.Foundation.Interfaces.3.17.4.2\lib\net46\Genesys.Foundation.Interfaces.dll</HintPath>
+      <HintPath>..\packages\Genesys.Foundation.Interfaces.3.17.4.706\lib\net46\Genesys.Foundation.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Genesys.Foundation.Models, Version=3.17.4.0, Culture=neutral, PublicKeyToken=e9c26097b5145304, processorArchitecture=MSIL">
-      <HintPath>..\packages\Genesys.Foundation.Models.3.17.4.2\lib\net46\Genesys.Foundation.Models.dll</HintPath>
+      <HintPath>..\packages\Genesys.Foundation.Models.3.17.4.706\lib\net46\Genesys.Foundation.Models.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -83,7 +84,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\ViewModel\WpfViewModel.cs" />
+    <Compile Include="Application\IWpfApplication.cs" />
+    <Compile Include="Application\WpfApplication.cs" />
+    <Compile Include="Application\WpfViewModel.cs" />
+    <Compile Include="Pages\ReadOnlyPage.cs" />
+    <Compile Include="Pages\SaveablePage.cs" />
     <Compile Include="Themes\GenericLayout.cs" />
     <Compile Include="Pages\Customer\CustomerCreate.xaml.cs">
       <DependentUpon>CustomerCreate.xaml</DependentUpon>
@@ -127,11 +132,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\Application\WpfApplication.cs" />
-    <Compile Include="Classes\UserControls\ReadOnlyControl.cs" />
-    <Compile Include="Classes\UserControls\SaveableControl.cs" />
-    <Compile Include="Classes\Pages\ReadOnlyPage.cs" />
-    <Compile Include="Classes\Pages\SaveablePage.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -205,6 +205,8 @@
     <Compile Include="UserControls\Progress\ProgressRing.xaml.cs">
       <DependentUpon>ProgressRing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ReadOnlyControl.cs" />
+    <Compile Include="UserControls\SaveableControl.cs" />
     <Compile Include="UserControls\Toolbox\OkCancel.xaml.cs">
       <DependentUpon>OkCancel.xaml</DependentUpon>
     </Compile>
@@ -225,7 +227,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App_Data\CustomerData.json" />
     <None Include="packages.config" />
     <None Include="PostBuild.bat" />
     <None Include="Properties\Settings.settings">
@@ -258,6 +259,9 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Call "$(ProjectDir)PostBuild.Bat" "$(ProjectDir)" "$(OutDir)" "$(TargetPath)" "$(RootNameSpace)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

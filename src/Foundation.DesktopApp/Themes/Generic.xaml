@@ -1,9 +1,9 @@
 <ResourceDictionary
-    xmlns:uc="clr-namespace:Foundation.UserControls"
-    xmlns:t="clr-namespace:Foundation.Themes"
+    xmlns:uc="clr-namespace:Genesys.Foundation.UserControls"
+    xmlns:t="clr-namespace:Genesys.Foundation.Themes"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
+    
     <Style TargetType="{x:Type t:GenericLayout}">
         <Setter Property="Template">
             <Setter.Value>

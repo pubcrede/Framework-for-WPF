@@ -1,5 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="WpfApplication.cs" company="Genesys Source">
+//      Copyright (c) 2017 Genesys Source. All rights reserved.
 //      Licensed to the Apache Software Foundation (ASF) under one or more 
 //      contributor license agreements.  See the NOTICE file distributed with 
 //      this work for additional information regarding copyright ownership.
@@ -17,27 +18,32 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows;
 using Genesys.Extensions;
 using Genesys.Extras.Configuration;
 using Genesys.Extras.Net;
+using System.Windows;
+using System.Linq;
+using System.Windows.Navigation;
+using Genesys.Foundation.Application;
 
 namespace Foundation.Applications
 {
     /// <summary>
     /// Global application information
     /// </summary>
-    public abstract class WpfApplication : System.Windows.Application
+    public abstract class WpfApplication : System.Windows.Application, IWpfApplication
     {
-        private ConfigurationManagerFull configuration = new ConfigurationManagerFull();
+        ///// <summary>
+        ///// Persistent ConfigurationManager class, automatically loaded with this project .config files
+        ///// </summary>
+        public IConfigurationManager ConfigurationManager { get; set; } = new ConfigurationManagerFull();
 
         /// <summary>
         /// MyWebService
         /// </summary>
-        public virtual Uri MyWebService { get { return new Uri(this.configuration.AppSettingValue("MyWebService"), UriKind.RelativeOrAbsolute); } }
+        public Uri MyWebService { get { return new Uri(ConfigurationManager.AppSettingValue("MyWebService"), UriKind.RelativeOrAbsolute); } }
 
         /// <summary>
         /// Entry point Screen (Typically login screen)
@@ -57,13 +63,12 @@ namespace Foundation.Applications
         /// <summary>
         /// Returns currently active window
         /// </summary>
-        public static new Window Current
-        {
-            get
-            {
-                return System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-            }
-        }
+        public static new Window Current { get { return Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive); } }
+
+        /// <summary>
+        /// Error screen
+        /// </summary>
+        public Uri CurrentPage { get { return ((NavigationWindow)WpfApplication.Current).CurrentSource; } }
 
         /// <summary>
         /// Constructor
@@ -75,12 +80,28 @@ namespace Foundation.Applications
         }
 
         /// <summary>
+        /// Init all locally stored data
+        /// </summary>
+        public abstract Task InitializeAsync();
+
+        /// <summary>
         /// Initializes this class with data, and allows for proper async behavior
         /// </summary>
-        /// <returns></returns>f
-        public virtual async Task InitializeAsync(Boolean hasServices)
+        /// <returns></returns>
+        public virtual async Task InitializeAsync(bool hasServices)
         {
+            await this.LoadConfigAsync();
             if (hasServices == true) await this.WakeServicesAsync();
+        }
+
+        /// <summary>
+        /// Loads config data
+        /// </summary>
+        /// <returns></returns>
+        public async Task LoadConfigAsync()
+        {
+            await Task.Delay(1);
+            ConfigurationManager = new ConfigurationManagerFull();
         }
 
         /// <summary>
@@ -89,35 +110,13 @@ namespace Foundation.Applications
         /// <returns></returns>
         public virtual async Task WakeServicesAsync()
         {
-            if (this.MyWebService.ToString() == TypeExtension.DefaultString)
+            if (MyWebService.ToString() == TypeExtension.DefaultString)
             {
-                HttpRequestGetString Request = new HttpRequestGetString(this.MyWebService.ToString());
+                HttpRequestGetString Request = new HttpRequestGetString(MyWebService.ToString());
                 Request.ThrowExceptionWithEmptyReponse = false;
                 await Request.SendAsync();
             }
         }
-
-        /// <summary>
-        /// Init all locally stored data
-        /// </summary>
-        protected abstract Task InitializeAsync();
-
-        /// <summary>
-        /// Can this screen go back
-        /// </summary>
-        protected bool CanGoBack { get { return RootFrame.CanGoBack; } }
-
-        /// <summary>
-        /// Navigates back to previous screen
-        /// </summary>
-        public virtual void GoBack() { Navigate(HomePage.ToString()); }
-
-        /// <summary>
-        /// Navigates to any screen
-        /// </summary>
-        /// <param name="destination"></param>
-        /// <param name="dataToPass"></param>
-        public void Navigate(string destination, object dataToPass = null) { RootFrame.Navigate(destination, dataToPass); }
 
         /// <summary>
         /// Gets the root frame of the application
@@ -136,5 +135,41 @@ namespace Foundation.Applications
                 return returnValue;
             }
         }
+
+        /// <summary>
+        /// Can this screen go back
+        /// </summary>
+        public bool CanGoBack { get { return RootFrame.CanGoBack; } }
+
+        /// <summary>
+        /// Can this screen go forward
+        /// </summary>
+        public bool CanGoForward { get { return RootFrame.CanGoForward; } }
+
+        /// <summary>
+        /// Navigates back to previous screen
+        /// </summary>
+        public void GoBack() { RootFrame.GoBack(); }
+
+        /// <summary>
+        /// Navigates forward to next screen
+        /// </summary>
+        public void GoForward() { RootFrame.GoForward(); }
+
+        /// <summary>
+        /// Navigates to a page via Uri.
+        /// Typically in WPF apps
+        /// </summary>
+        /// <param name="destination">Destination page Uri</param>
+        public bool Navigate(Uri destinationPageUrl) { return RootFrame.Navigate(destinationPageUrl); }
+
+        /// <summary>
+        /// Navigates to a page via Uri.
+        /// Typically in WPF apps
+        /// </summary>
+        /// <param name="destination">Destination page Uri</param>
+        /// <param name="dataToPass">Data to be passed to the destination page</param>
+        public bool Navigate<TModel>(Uri destinationPageUrl, TModel dataToPass) { return RootFrame.Navigate(destinationPageUrl, dataToPass); }
+
     }
 }

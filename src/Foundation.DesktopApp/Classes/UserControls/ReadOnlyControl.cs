@@ -1,5 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="ReadOnlyControl.cs" company="Genesys Source">
+//      Copyright (c) 2017 Genesys Source. All rights reserved.
 //      Licensed to the Apache Software Foundation (ASF) under one or more 
 //      contributor license agreements.  See the NOTICE file distributed with 
 //      this work for additional information regarding copyright ownership.
@@ -36,19 +37,19 @@ namespace Foundation.UserControls
     public abstract class ReadOnlyControl : UserControl
     {
         /// <summary>
+        /// Currently running application
+        /// </summary>
+        public WpfApplication MyApplication { get { return (WpfApplication)System.Windows.Application.Current; } }
+
+        /// <summary>
         /// Holds model data
         /// </summary>
         protected object MyViewModel { get; set; } = null;
 
         /// <summary>
-        /// MyApplication instance
-        /// </summary>
-        public WpfApplication MyApplication { get { return (WpfApplication)System.Windows.Application.Current; } }
-
-        /// <summary>
         /// Uri to currently active frame/page
         /// </summary>
-        public Uri CurrentSource { get { return MyApplication.RootFrame.CurrentSource; } }
+        public Uri CurrentPage { get { return MyApplication.CurrentPage; } }
 
         /// <summary>
         /// Throws Exception if any UI elements overrun their text max length
@@ -93,7 +94,7 @@ namespace Foundation.UserControls
         /// <summary>
         /// Navigates back one screen
         /// </summary>
-        public virtual void GoBack() { MyApplication.Navigate(MyApplication.HomePage.ToString()); }
+        public virtual void GoBack() { MyApplication.Navigate(MyApplication.HomePage); }
 
         /// <summary>
         /// Navigates to any screen

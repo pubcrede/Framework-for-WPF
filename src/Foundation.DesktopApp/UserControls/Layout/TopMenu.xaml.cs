@@ -1,5 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="TopMenu.cs" company="Genesys Source">
+//      Copyright (c) 2017 Genesys Source. All rights reserved.
 //      Licensed to the Apache Software Foundation (ASF) under one or more 
 //      contributor license agreements.  See the NOTICE file distributed with 
 //      this work for additional information regarding copyright ownership.
@@ -16,14 +17,14 @@
 //       limitations under the License. 
 // </copyright>
 //-----------------------------------------------------------------------
-using Foundation.Entity;
-using Foundation.Pages;
+using Genesys.Foundation.Entity;
+using Genesys.Foundation.Pages;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace Foundation.UserControls
+namespace Genesys.Foundation.UserControls
 {
     /// <summary>
     /// Top bar with title and back button
@@ -42,7 +43,6 @@ namespace Foundation.UserControls
         /// <summary>
         /// Binds controls to the data 
         /// </summary>
-        /// <typeparam name="TModel"></typeparam>
         /// <param name="modelData"></param>
         protected override void BindModelData(object modelData)
         {
@@ -65,14 +65,7 @@ namespace Foundation.UserControls
         /// <param name="e">Event arguments</param>
         private void Search_Click(object sender, RoutedEventArgs e)
         {            
-            var newComponent = System.Windows.Application.LoadComponent(CustomerSummary.Uri);
-            var navService = NavigationService.GetNavigationService(this);
 
-            if (newComponent is ReadOnlyPage)
-            {
-                navService.LoadCompleted += new LoadCompletedEventHandler(((ReadOnlyPage)newComponent).NavigationService_LoadCompleted);
-            }
-            navService.Navigate(((Page)newComponent), new CustomerModel() { FirstName = "John", LastName = "Smith", BirthDate = new DateTime(1982, 5, 19) });
         }
 
         /// <summary>
@@ -82,14 +75,7 @@ namespace Foundation.UserControls
         /// <param name="e">Event arguments</param>
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            var newComponent = System.Windows.Application.LoadComponent(CustomerCreate.Uri);
-            var navService = NavigationService.GetNavigationService(this);
 
-            if (newComponent is ReadOnlyPage)
-            {
-                navService.LoadCompleted += new LoadCompletedEventHandler(((ReadOnlyPage)newComponent).NavigationService_LoadCompleted);
-            }
-            navService.Navigate(((Page)newComponent), new CustomerModel() { FirstName = "John", LastName = "Smith", BirthDate = new DateTime(1982, 5, 19) });
         }
 
         /// <summary>
@@ -99,14 +85,7 @@ namespace Foundation.UserControls
         /// <param name="e">Event arguments</param>
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            var newComponent = System.Windows.Application.LoadComponent(CustomerEdit.Uri);
-            var navService = NavigationService.GetNavigationService(this);
 
-            if (newComponent is ReadOnlyPage)
-            {
-                navService.LoadCompleted += new LoadCompletedEventHandler(((ReadOnlyPage)newComponent).NavigationService_LoadCompleted);
-            }
-            navService.Navigate(((Page)newComponent), new CustomerModel() { FirstName = "John", LastName = "Smith", BirthDate = new DateTime(1982, 5, 19) });
         }
 
         /// <summary>
@@ -116,14 +95,7 @@ namespace Foundation.UserControls
         /// <param name="e">Event arguments</param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            var newComponent = System.Windows.Application.LoadComponent(CustomerDelete.Uri);
-            var navService = NavigationService.GetNavigationService(this);
 
-            if (newComponent is ReadOnlyPage)
-            {
-                navService.LoadCompleted += new LoadCompletedEventHandler(((ReadOnlyPage)newComponent).NavigationService_LoadCompleted);
-            }
-            navService.Navigate(((Page)newComponent), new CustomerModel() { FirstName = "John", LastName = "Smith", BirthDate = new DateTime(1982, 5, 19) });
         }
 
         /// <summary>

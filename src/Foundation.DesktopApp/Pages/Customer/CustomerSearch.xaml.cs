@@ -18,9 +18,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using Foundation.Entity;
-using Foundation.UserControls;
-using Foundation.ViewModels;
 using Genesys.Extensions;
+using Genesys.Foundation.Application;
+using Genesys.Foundation.Pages;
+using Genesys.Foundation.UserControls;
 using Genesys.Foundation.Worker;
 using System;
 using System.Collections.ObjectModel;
@@ -48,7 +49,7 @@ namespace Foundation.Pages
         /// <summary>
         /// ViewModel holds model and is responsible for server calls, navigation, etc.
         /// </summary>
-        public WpfViewModel<CustomerSearchModel> MyViewModel { get; } = new WpfViewModel<CustomerSearchModel>("CustomerSearch");
+        public WpfViewModel<CustomerSearchModel> MyViewModel { get; }
 
         /// <summary>
         /// Page and controls have been loaded
@@ -70,6 +71,7 @@ namespace Foundation.Pages
             TextFirstName.KeyDown += MapEnterKey;
             TextLastName.KeyDown += MapEnterKey;
             ListResults.MouseUp += ListView_MouseUp;
+            MyViewModel = new WpfViewModel<CustomerSearchModel>(ControllerName);
         }
 
         /// <summary>
@@ -90,7 +92,7 @@ namespace Foundation.Pages
         /// <param name="e">Event arguments</param>
         protected override void Page_ModelReceived(object sender, NewModelReceivedEventArgs e)
         {
-            BindModel(MyViewModel.Model = new CustomerSearchModel());
+            BindModel(MyViewModel.MyModel = new CustomerSearchModel());
         }
 
         /// <summary>
@@ -99,11 +101,11 @@ namespace Foundation.Pages
         /// <param name="modelData"></param>
         protected override void BindModel(object modelData)
         {
-            MyViewModel.Model = modelData.DirectCastSafe<CustomerSearchModel>();
-            DataContext = MyViewModel.Model;
-            //SetBinding(ref this.TextID, MyViewModel.Model.ID.ToString(), "ID");
-            SetBinding(ref this.TextFirstName, MyViewModel.Model.FirstName, "FirstName");
-            SetBinding(ref this.TextLastName, MyViewModel.Model.LastName, "LastName");
+            MyViewModel.MyModel = modelData.DirectCastSafe<CustomerSearchModel>();
+            DataContext = MyViewModel.MyModel;
+            SetBinding(ref this.TextID, MyViewModel.MyModel.ID.ToString(), "ID");
+            SetBinding(ref this.TextFirstName, MyViewModel.MyModel.FirstName, "FirstName");
+            SetBinding(ref this.TextLastName, MyViewModel.MyModel.LastName, "LastName");
         }
 
         /// <summary>
@@ -124,10 +126,10 @@ namespace Foundation.Pages
         public override async Task<WorkerResult> Process(object sender, RoutedEventArgs e)
         {
             var returnValue = new WorkerResult();
-            string searchUri = String.Format("{0}/{1}/{2}?firstName={3}&lastName={4}", this.MyApplication.MyWebService, "CustomerSearch", MyViewModel.Model.ID, MyViewModel.Model.FirstName, MyViewModel.Model.LastName);
-            BindModel(await MyViewModel.SendGetAsync<CustomerSearchModel>(searchUri));
-            this.ListResults.ItemsSource = MyViewModel.Model.Results;
-            if (this.MyViewModel.Model.Results.Count > 0)
+            MyViewModel.MyModel = await MyViewModel.Sender.SendPostAsync<CustomerSearchModel>(MyViewModel.MyViewModelWebService, MyViewModel.MyModel);
+            BindModel(MyViewModel.MyModel);
+            this.ListResults.ItemsSource = MyViewModel.MyModel.Results;
+            if (MyViewModel.MyModel.Results.Count > 0)
             {
                 OkCancel.TextResultMessage = "Customer matches listed below";
                 this.StackResults.Visibility = Visibility.Visible;
@@ -136,7 +138,8 @@ namespace Foundation.Pages
                 OkCancel.TextResultMessage = "No results found";
                 this.StackResults.Visibility = Visibility.Collapsed;
             }
-            returnValue.ReturnData = this.MyViewModel.Model.Serialize();
+            returnValue.ReturnData = MyViewModel.MyModel.Serialize();
+
             return returnValue;
         }
 

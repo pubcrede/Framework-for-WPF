@@ -1,5 +1,5 @@
 ﻿<a:WpfApplication x:Class="Foundation.DesktopApp.App"
-            xmlns:a="clr-namespace:Foundation.Applications"
+            xmlns:a="clr-namespace:Genesys.Foundation.Application"
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>

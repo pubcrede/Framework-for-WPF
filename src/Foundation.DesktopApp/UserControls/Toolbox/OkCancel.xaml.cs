@@ -1,5 +1,6 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="OkCancel.cs" company="Genesys Source">
+//      Copyright (c) 2017 Genesys Source. All rights reserved.
 //      Licensed to the Apache Software Foundation (ASF) under one or more 
 //      contributor license agreements.  See the NOTICE file distributed with 
 //      this work for additional information regarding copyright ownership.
@@ -21,7 +22,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Genesys.Foundation.Worker;
 
-namespace Foundation.UserControls
+namespace Genesys.Foundation.UserControls
 {
     /// <summary>
     /// OK and cancel buttons
@@ -224,7 +225,6 @@ namespace Foundation.UserControls
         /// <summary>
         /// Binds controls to the data 
         /// </summary>
-        /// <typeparam name="TModel"></typeparam>
         /// <param name="modelData"></param>
         protected override void BindModelData(object modelData)
         {
@@ -293,7 +293,6 @@ namespace Foundation.UserControls
         /// Stops processing, and supplies WorkerResult data
         /// </summary>
         /// <param name="results">WorkerResult class with results of the processing.</param>
-        /// <param name="successMessage">Message to display if success</param>
         public void StopProcessing(WorkerResult results)
         {
             ProgressProcessing.StopProcessing(results);

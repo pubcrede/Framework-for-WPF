@@ -1,5 +1,6 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="HamburgerMenu.cs" company="Genesys Source">
+//      Copyright (c) 2017 Genesys Source. All rights reserved.
 //      Licensed to the Apache Software Foundation (ASF) under one or more 
 //      contributor license agreements.  See the NOTICE file distributed with 
 //      this work for additional information regarding copyright ownership.
@@ -17,16 +18,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using Foundation.Pages;
-using Foundation.Entity;
 using Genesys.Extensions;
+using Genesys.Foundation.Pages;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows;
 
-namespace Foundation.UserControls
+namespace Genesys.Foundation.UserControls
 {
     /// <summary>
     /// Interaction logic for HamburgerMenu.xaml
@@ -114,7 +115,7 @@ namespace Foundation.UserControls
         /// <param name="sender">Sender of event</param>
         /// <param name="e">Event arguments</param>
         private void Search_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             Navigate(CustomerSearch.Uri);
         }
 
@@ -157,8 +158,14 @@ namespace Foundation.UserControls
         public void MenuClose(object sender, MouseEventArgs e)
         {
             var senderStrong = sender.DirectCastSafe<Canvas>();
-            var animation = new DoubleAnimation() { From = senderStrong.Width, To = WidthClosed, Duration = TimeSpan.FromSeconds(this.AnimationDuration),
-                AutoReverse = false, RepeatBehavior = new RepeatBehavior(1) };
+            var animation = new DoubleAnimation()
+            {
+                From = senderStrong.Width,
+                To = WidthClosed,
+                Duration = TimeSpan.FromSeconds(this.AnimationDuration),
+                AutoReverse = false,
+                RepeatBehavior = new RepeatBehavior(1)
+            };
             senderStrong.BeginAnimation(Canvas.WidthProperty, animation);
             this.isOpen = false;
         }

@@ -1,5 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="ReadOnlyPage.cs" company="Genesys Source">
+//      Copyright (c) 2017 Genesys Source. All rights reserved.
 //      Licensed to the Apache Software Foundation (ASF) under one or more 
 //      contributor license agreements.  See the NOTICE file distributed with 
 //      this work for additional information regarding copyright ownership.
@@ -17,14 +18,12 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using Foundation.Applications;
-using Foundation.ViewModels;
 using Genesys.Extensions;
 using Genesys.Extras.Collections;
-using Genesys.Foundation.Name;
+using Genesys.Extras.Net;
 using Genesys.Foundation.Validation;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -37,6 +36,31 @@ namespace Foundation.Pages
     /// </summary>    
     public abstract class ReadOnlyPage : Page
     {
+        /// <summary>
+        /// Currently running application
+        /// </summary>
+        public WpfApplication MyApplication { get { return (WpfApplication)System.Windows.Application.Current; } }
+
+        /// <summary>
+        /// Sender of main Http Verbs
+        /// </summary>
+        public HttpVerbSender HttpSender { get; set; } = new HttpVerbSender();
+
+        /// <summary>
+        /// Name of the controller used in web service calls
+        /// </summary>
+        public abstract string ControllerName { get; }
+
+        /// <summary>
+        /// Uri to currently active frame/page
+        /// </summary>
+        public Uri CurrentPage { get { return MyApplication.CurrentPage; } }
+
+        /// <summary>
+        /// Throws Exception if any UI elements overrun their text max length
+        /// </summary>
+        public bool ThrowExceptionOnTextOverrun { get; set; } = TypeExtension.DefaultBoolean;
+
         /// <summary>
         /// New model to load
         /// </summary>
@@ -72,26 +96,6 @@ namespace Foundation.Pages
         }
 
         /// <summary>
-        /// Application instance
-        /// </summary>
-        public WpfApplication MyApplication { get { return (WpfApplication)System.Windows.Application.Current; } }
-
-        /// <summary>
-        /// Name of the controller used in web service calls
-        /// </summary>
-        public abstract string ControllerName { get; }
-
-        /// <summary>
-        /// Uri to currently active frame/page
-        /// </summary>
-        public Uri CurrentSource { get { return MyApplication.RootFrame.CurrentSource; } }
-
-        /// <summary>
-        /// Throws Exception if any UI elements overrun their text max length
-        /// </summary>
-        public bool ThrowExceptionOnTextOverrun { get; set; } = TypeExtension.DefaultBoolean;
-
-        /// <summary>
         /// Constructor
         /// </summary>
         protected ReadOnlyPage() : base()
@@ -105,13 +109,13 @@ namespace Foundation.Pages
         }
 
         /// <summary>
-        /// Binds all model data to the screen controls and sets MyViewModel.Model property
+        /// Binds all model data to the screen controls and sets MyViewModel.MyModel property
         /// </summary>
         /// <param name="modelData">Model data to bind</param>
         protected abstract void BindModel(object modelData);
 
         /// <summary>
-        /// Binds all model data to the screen controls and sets MyViewModel.Model property
+        /// Binds all model data to the screen controls and sets MyViewModel.MyModel property
         /// </summary>
         /// <param name="sender">Sender of event</param>
         /// <param name="e">Event arguments</param>
@@ -175,6 +179,9 @@ namespace Foundation.Pages
         /// <param name="bindingProperty"></param>
         public void SetBinding(ref TextBox item, string initialValue, string bindingProperty)
         {
+            // Handle for no state
+            initialValue = initialValue.Replace(TypeExtension.DefaultInteger.ToString(), "")
+                .Replace(TypeExtension.DefaultGuid.ToString(), "").Replace(TypeExtension.DefaultDate.ToString(), "");
             item.SetBinding(TextBox.TextProperty, new Binding() { Path = new PropertyPath(bindingProperty), Mode = BindingMode.TwoWay });
         }
 

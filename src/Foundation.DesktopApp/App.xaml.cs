@@ -1,5 +1,6 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="App.xaml.cs" company="Genesys Source">
+//      Copyright (c) 2017 Genesys Source. All rights reserved.
 //      Licensed to the Apache Software Foundation (ASF) under one or more 
 //      contributor license agreements.  See the NOTICE file distributed with 
 //      this work for additional information regarding copyright ownership.
@@ -16,9 +17,8 @@
 //       limitations under the License. 
 // </copyright>
 //-----------------------------------------------------------------------
+using Genesys.Foundation.Application;
 using System;
-using System.Threading.Tasks;
-using Foundation.Applications;
 
 namespace Foundation.DesktopApp
 {
@@ -30,7 +30,7 @@ namespace Foundation.DesktopApp
         /// <summary>
         /// Entry point Screen (Typically login screen)
         /// </summary>
-        public override Uri LandingPage { get; } = new Uri("/MainWindow.xaml", UriKind.RelativeOrAbsolute);
+        public override Uri StartupUri { get; } = new Uri("/MainWindow.xaml", UriKind.RelativeOrAbsolute);
 
         /// <summary>
         /// Home dashboard screen
@@ -41,14 +41,5 @@ namespace Foundation.DesktopApp
         /// Error screen
         /// </summary>
         public override Uri ErrorPage { get; } = new Uri("/Pages/Shared/Error.xaml", UriKind.RelativeOrAbsolute);
-
-        /// <summary>
-        /// Initialize the application, and wake up web services
-        /// </summary>
-        /// <returns></returns>
-        protected override async Task InitializeAsync()
-        {
-            await base.InitializeAsync(true);
-        }
     }
 }
