@@ -13,7 +13,7 @@ using System.Windows;
 [assembly: AssemblyCompany("Genesys Source")]
 [assembly: AssemblyProduct("Genesys Source Framework for WPF")]
 [assembly: AssemblyCopyright("Copyright © 2017 Genesys Source")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Genesys Source is a registered trademark of Genesys Source. Genesys Source Framework and Genesys Cloud Dev Environment are trademarks of Geneysys Source.")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -50,5 +50,5 @@ using System.Windows;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("3.17.07")]
-[assembly: AssemblyFileVersion("3.17.07")]
+[assembly: AssemblyVersion("3.17.08")]
+[assembly: AssemblyFileVersion("3.17.08")]
