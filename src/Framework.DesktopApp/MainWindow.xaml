@@ -22,19 +22,19 @@
                         <TextBox Style="{StaticResource TextBoxBody}">II. Set your SQL connection by clicking the Edit button</TextBox>
                         <TextBox Style="{StaticResource TextBoxBody}">III. Click Publish and SSDT will publish schema, SPs, views and data to your destination database</TextBox>
                     </StackPanel>
-                    <TextBox Style="{StaticResource TextBoxSubTitle}" Margin="20,0,0,0">Step 2: Set the Framework.Entity (EF) connection strings to your SQL Server by:</TextBox>
+                    <TextBox Style="{StaticResource TextBoxSubTitle}" Margin="20,0,0,0">Step 2: Double-check your AppSettings.config MyWebService URL:</TextBox>
                     <StackPanel Orientation="Vertical" Margin="38,0,0,0">
-                        <TextBox Style="{StaticResource TextBoxBody}">I. Open Framework.DesktopApp\App_Data\ConnectionStrings.config</TextBox>
-                        <TextBox Style="{StaticResource TextBoxBody}">II. Change DatabaseServer.dev.GenesysFramework.com to your SQL Server machine name</TextBox>
-                        <TextBox Style="{StaticResource TextBoxBody}">III. For SQL Authentication, replace "Integrated Security=true" with "user id=USER; password=PASS;"</TextBox>
-                        <TextBox Style="{StaticResource TextBoxBody}">  Important: Most problems are caused by invalid SQL Connection and/or User</TextBox>
+                        <TextBox Style="{StaticResource TextBoxBody}">I. Open Framework.DesktopApp\App_Data\AppSettings.config</TextBox>
+                        <TextBox Style="{StaticResource TextBoxBody}">II. Observe MyWebService. This should be set to the endpoint hosting Framework.WebService</TextBox>
+                        <TextBox Style="{StaticResource TextBoxBody}"> - Local Debugging: http://localhost:20871/v1</TextBox>
+                        <TextBox Style="{StaticResource TextBoxBody}"> - Sampler Sandbox: http://Dev-Web-16/Genesys-Framework-for-WebAPI/v1</TextBox>
                     </StackPanel>
                     <TextBox Style="{StaticResource TextBoxSubTitle}" Margin="20,0,0,0">Step 3: Run the Framework.DesktopApp project!</TextBox>
                     <StackPanel Margin="38,0,0,10">
                         <TextBox Style="{StaticResource TextBoxBody}">I. Right-click the Framework.DesktopApp project and select Set as Startup Project</TextBox>
                         <TextBox Style="{StaticResource TextBoxBody}">II. Press F5 to run</TextBox>
                         <TextBox Style="{StaticResource TextBoxBody}">III. Click the Search link at the top, enter "i" for First Name, and click Search to see records with "i"</TextBox>
-                        <TextBox Style="{StaticResource TextBoxBody}">View Framework Quick-Start Guide at: http://docs.GenesysFramework.com/library/Genesys-Framework-Quick-Guide.pdf</TextBox>
+                        <TextBox Style="{StaticResource TextBoxBody}">View Framework Quick-Start Guide at: http://genesysframework.com</TextBox>
                     </StackPanel>
                 </StackPanel>
                 <Grid>
@@ -53,9 +53,9 @@
                     </StackPanel>
                     <StackPanel Background="{StaticResource ContentBackgroundBrush}" Orientation="Vertical" Margin="0,10,5,0" Grid.Column="1">
                         <TextBox Style="{StaticResource TextBoxSubTitle}" Margin="5,5,0,0">Other areas of interest:</TextBox>
-                        <TextBox Style="{StaticResource TextBoxBody}" Margin="10,3,0,0">Visit us at: http://www.GenesysFramework.com</TextBox>
+                        <TextBox Style="{StaticResource TextBoxBody}" Margin="10,3,0,0">Visit us at: http://www.genesysframework.com</TextBox>
                         <TextBox Style="{StaticResource TextBoxBody}" Margin="10,3,0,0">Genesys in Visual Studio: http://marketplace.visualstudio.com</TextBox>
-                        <TextBox Style="{StaticResource TextBoxBody}" Margin="10,3,0,0">Genesys on GitHub: http://www.github.com/GenesysSource</TextBox>
+                        <TextBox Style="{StaticResource TextBoxBody}" Margin="10,3,0,0">Genesys on GitHub: http://www.github.com/genesyssource</TextBox>
                     </StackPanel>
                 </Grid>
             </StackPanel>

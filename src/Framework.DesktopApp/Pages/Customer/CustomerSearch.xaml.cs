@@ -81,7 +81,7 @@ namespace Framework.Pages
         /// <param name="e">Event args</param>
         private void ListView_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            int id = ListResults.SelectedItem.DirectCastOrFill<CustomerModel>().ID;
+            int id = ListResults.SelectedItem.CastOrFill<CustomerModel>().ID;
             MyViewModel.Navigate(CustomerSummary.Uri, id, this.NavigationService);
         }
 
@@ -101,7 +101,7 @@ namespace Framework.Pages
         /// <param name="modelData"></param>
         protected override void BindModel(object modelData)
         {
-            MyViewModel.MyModel = modelData.DirectCastOrFill<CustomerSearchModel>();
+            MyViewModel.MyModel = modelData.CastOrFill<CustomerSearchModel>();
             DataContext = MyViewModel.MyModel;
             SetBinding(ref this.TextID, MyViewModel.MyModel.ID.ToString(), "ID");
             SetBinding(ref this.TextFirstName, MyViewModel.MyModel.FirstName, "FirstName");
