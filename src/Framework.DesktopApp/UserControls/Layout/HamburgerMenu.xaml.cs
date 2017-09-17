@@ -19,7 +19,6 @@
 //-----------------------------------------------------------------------
 using Framework.Pages;
 using Genesys.Extensions;
-using Genesys.Framework.Pages;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,7 +26,7 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 
-namespace Genesys.Framework.UserControls
+namespace Framework.UserControls
 {
     /// <summary>
     /// Interaction logic for HamburgerMenu.xaml

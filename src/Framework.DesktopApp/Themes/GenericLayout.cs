@@ -21,7 +21,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Genesys.Framework.Themes
+namespace Framework.Themes
 {
     /// <summary>
     /// Default layout for Generic theme

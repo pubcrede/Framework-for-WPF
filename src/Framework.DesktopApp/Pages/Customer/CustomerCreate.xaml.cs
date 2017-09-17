@@ -19,9 +19,9 @@
 //-----------------------------------------------------------------------
 using Framework.Entity;
 using Genesys.Extensions;
-using Genesys.Framework.Application;
-using Genesys.Framework.Pages;
-using Genesys.Framework.UserControls;
+using Framework.Application;
+using Framework.Pages;
+using Framework.UserControls;
 using Genesys.Framework.Worker;
 using System;
 using System.Threading.Tasks;

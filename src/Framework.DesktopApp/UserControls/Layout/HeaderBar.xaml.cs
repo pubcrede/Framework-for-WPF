@@ -21,7 +21,7 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Genesys.Framework.UserControls
+namespace Framework.UserControls
 {
     /// <summary>
     /// Top bar with title and back button

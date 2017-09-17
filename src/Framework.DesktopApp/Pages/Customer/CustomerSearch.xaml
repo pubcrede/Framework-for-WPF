@@ -1,8 +1,8 @@
 ﻿<v:SaveablePage
     x:Class="Framework.Pages.CustomerSearch"
-    xmlns:t="clr-namespace:Genesys.Framework.Themes"
-    xmlns:v="clr-namespace:Genesys.Framework.Pages"    
-    xmlns:uc="clr-namespace:Genesys.Framework.UserControls"
+    xmlns:t="clr-namespace:Framework.Themes"
+    xmlns:v="clr-namespace:Framework.Pages"    
+    xmlns:uc="clr-namespace:Framework.UserControls"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

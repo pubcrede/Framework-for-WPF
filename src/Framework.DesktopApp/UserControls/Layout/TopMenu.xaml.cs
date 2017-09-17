@@ -18,13 +18,13 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using Genesys.Framework.Entity;
-using Genesys.Framework.Pages;
+using Framework.Pages;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace Genesys.Framework.UserControls
+namespace Framework.UserControls
 {
     /// <summary>
     /// Top bar with title and back button

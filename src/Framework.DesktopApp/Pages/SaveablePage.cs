@@ -17,14 +17,14 @@
 //       limitations under the License. 
 // </copyright>
 //-----------------------------------------------------------------------
+using Framework.UserControls;
+using Genesys.Framework.Worker;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
-using Genesys.Framework.UserControls;
-using Genesys.Framework.Worker;
 using System.Windows.Input;
 
-namespace Genesys.Framework.Pages
+namespace Framework.Pages
 {
     /// <summary>
     /// Screen base for authenticated users

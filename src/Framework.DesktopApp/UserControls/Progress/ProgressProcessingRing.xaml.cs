@@ -23,7 +23,7 @@ using System.Windows.Controls;
 using Genesys.Extensions;
 using Genesys.Framework.Worker;
 
-namespace Genesys.Framework.UserControls
+namespace Framework.UserControls
 {
     /// <summary>
     /// ProgressProcessingControl

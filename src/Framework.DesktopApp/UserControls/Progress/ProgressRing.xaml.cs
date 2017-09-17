@@ -19,7 +19,7 @@
 //-----------------------------------------------------------------------
 using System.Windows.Controls;
 
-namespace Genesys.Framework.UserControls
+namespace Framework.UserControls
 {
     /// <summary>
     /// Interaction logic for ProgressRing.xaml

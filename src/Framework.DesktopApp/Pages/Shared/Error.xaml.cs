@@ -21,7 +21,7 @@ using System.Windows.Navigation;
 using Genesys.Extensions;
 using System;
 
-namespace Genesys.Framework.Pages
+namespace Framework.Pages
 {
     /// <summary>
     /// Global error Screen

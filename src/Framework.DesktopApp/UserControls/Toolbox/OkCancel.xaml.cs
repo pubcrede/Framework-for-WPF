@@ -17,12 +17,12 @@
 //       limitations under the License. 
 // </copyright>
 //-----------------------------------------------------------------------
+using Genesys.Framework.Worker;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using Genesys.Framework.Worker;
 
-namespace Genesys.Framework.UserControls
+namespace Framework.UserControls
 {
     /// <summary>
     /// OK and cancel buttons
