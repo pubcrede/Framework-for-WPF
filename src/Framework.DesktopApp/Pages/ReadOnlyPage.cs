@@ -17,7 +17,7 @@
 //       limitations under the License. 
 // </copyright>
 //-----------------------------------------------------------------------
-using Genesys.Framework.Application;
+using Framework.Application;
 using Genesys.Extensions;
 using Genesys.Extras.Collections;
 using Genesys.Extras.Net;
@@ -29,7 +29,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Navigation;
 
-namespace Genesys.Framework.Pages
+namespace Framework.Pages
 {
     /// <summary>
     /// Screen base for authenticated users
@@ -103,6 +103,7 @@ namespace Genesys.Framework.Pages
 #if (DEBUG)
             ThrowExceptionOnTextOverrun = true;
 #endif
+            WindowTitle = "Genesys Source Dashboard";
             Loaded += Page_Loaded;
             SizeChanged += Page_SizeChanged;
             NewModelReceived += Page_ModelReceived;
@@ -159,7 +160,6 @@ namespace Genesys.Framework.Pages
         {
             item.SetBinding(Image.SourceProperty, new Binding() { Path = new PropertyPath(bindingProperty), Mode = BindingMode.OneWay });
         }
-
 
         /// <summary>
         /// Binds a string to a TextBlock
@@ -290,6 +290,14 @@ namespace Genesys.Framework.Pages
             TextBlock testControl = new TextBlock() { Text = textMessage };
             controlValidator.BusinessRules.Add(new ValidationRule<Control>("ActualWidth", item => item.ActualHeight <= testControl.ActualHeight));
             return controlValidator.IsValid(uiControl);
+        }
+
+        /// <summary>
+        /// Descends back through navigation
+        /// </summary>
+        public void GoBack()
+        {
+            MyApplication.GoBack();
         }
     }
 }

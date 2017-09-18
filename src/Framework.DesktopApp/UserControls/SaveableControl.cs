@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Genesys.Framework.UserControls
+namespace Framework.UserControls
 {
     /// <summary>
     /// Screen base for authenticated users

@@ -19,8 +19,8 @@
 //-----------------------------------------------------------------------
 using Genesys.Extensions;
 using Genesys.Extras.Collections;
-using Genesys.Framework.Application;
-using Genesys.Framework.Pages;
+using Framework.Application;
+using Framework.Pages;
 using Genesys.Framework.Validation;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Navigation;
 
-namespace Genesys.Framework.UserControls
+namespace Framework.UserControls
 {
     /// <summary>
     /// Common UI functions

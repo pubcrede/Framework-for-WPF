@@ -17,9 +17,10 @@
 //       limitations under the License. 
 // </copyright>
 //-----------------------------------------------------------------------
+using Genesys.Framework.Application;
 using System;
 
-namespace Genesys.Framework.Application
+namespace Framework.Application
 {
     /// <summary>
     /// Global application information

@@ -17,14 +17,15 @@
 //       limitations under the License. 
 // </copyright>
 //-----------------------------------------------------------------------
-using Genesys.Framework.Pages;
+using Framework.Pages;
+using Genesys.Framework.Application;
 using Genesys.Framework.Entity;
 using Genesys.Framework.Operation;
 using System;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace Genesys.Framework.Application
+namespace Framework.Application
 {
     /// <summary>
     /// ViewModel holds model and is responsible for server calls, navigation, etc.

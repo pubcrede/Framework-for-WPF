@@ -1,6 +1,6 @@
 <ResourceDictionary
-    xmlns:uc="clr-namespace:Genesys.Framework.UserControls"
-    xmlns:t="clr-namespace:Genesys.Framework.Themes"
+    xmlns:uc="clr-namespace:Framework.UserControls"
+    xmlns:t="clr-namespace:Framework.Themes"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     

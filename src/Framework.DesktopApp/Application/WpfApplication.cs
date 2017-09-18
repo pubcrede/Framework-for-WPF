@@ -27,7 +27,7 @@ using System.Windows;
 using System.Linq;
 using System.Windows.Navigation;
 
-namespace Genesys.Framework.Application
+namespace Framework.Application
 {
     /// <summary>
     /// Global application information
