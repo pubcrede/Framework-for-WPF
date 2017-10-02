@@ -232,11 +232,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Framework.WebServices.Data.mdf">
+    <Content Include="App_Data\FrameworkData.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\Framework.WebServices.Data_log.ldf">
-      <DependentUpon>Framework.WebServices.Data.mdf</DependentUpon>
+    <Content Include="App_Data\FrameworkData_log.ldf">
+      <DependentUpon>FrameworkData.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
